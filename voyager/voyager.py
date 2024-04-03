@@ -25,23 +25,23 @@ class Voyager:
         env_request_timeout: int = 600,
         max_iterations: int = 160,
         reset_placed_if_failed: bool = False,
-        action_agent_model_name: str = "gpt-4",
+        action_agent_model_name: str = "gemma",
         action_agent_temperature: float = 0,
         action_agent_task_max_retries: int = 4,
         action_agent_show_chat_log: bool = True,
         action_agent_show_execution_error: bool = True,
-        curriculum_agent_model_name: str = "gpt-4",
+        curriculum_agent_model_name: str = "gemma",
         curriculum_agent_temperature: float = 0,
-        curriculum_agent_qa_model_name: str = "gpt-3.5-turbo",
+        curriculum_agent_qa_model_name: str = "gemma",
         curriculum_agent_qa_temperature: float = 0,
         curriculum_agent_warm_up: Dict[str, int] = None,
         curriculum_agent_core_inventory_items: str = r".*_log|.*_planks|stick|crafting_table|furnace"
         r"|cobblestone|dirt|coal|.*_pickaxe|.*_sword|.*_axe",
         curriculum_agent_mode: str = "auto",
-        critic_agent_model_name: str = "gpt-4",
+        critic_agent_model_name: str = "gemma",
         critic_agent_temperature: float = 0,
         critic_agent_mode: str = "auto",
-        skill_manager_model_name: str = "gpt-3.5-turbo",
+        skill_manager_model_name: str = "gemma",
         skill_manager_temperature: float = 0,
         skill_manager_retrieval_top_k: int = 5,
         openai_api_request_timeout: int = 240,
@@ -105,7 +105,6 @@ class Voyager:
             mc_port=mc_port,
             azure_login=azure_login,
             server_port=server_port,
-            request_timeout=env_request_timeout,
         )
         self.env_wait_ticks = env_wait_ticks
         self.reset_placed_if_failed = reset_placed_if_failed
@@ -116,9 +115,8 @@ class Voyager:
 
         # init agents
         self.action_agent = ActionAgent(
-            model_name=action_agent_model_name,
+            model=action_agent_model_name,
             temperature=action_agent_temperature,
-            request_timout=openai_api_request_timeout,
             ckpt_dir=ckpt_dir,
             resume=resume,
             chat_log=action_agent_show_chat_log,
@@ -126,11 +124,10 @@ class Voyager:
         )
         self.action_agent_task_max_retries = action_agent_task_max_retries
         self.curriculum_agent = CurriculumAgent(
-            model_name=curriculum_agent_model_name,
+            model=curriculum_agent_model_name,
             temperature=curriculum_agent_temperature,
-            qa_model_name=curriculum_agent_qa_model_name,
+            qa_model=curriculum_agent_qa_model_name,
             qa_temperature=curriculum_agent_qa_temperature,
-            request_timout=openai_api_request_timeout,
             ckpt_dir=ckpt_dir,
             resume=resume,
             mode=curriculum_agent_mode,
@@ -138,16 +135,14 @@ class Voyager:
             core_inventory_items=curriculum_agent_core_inventory_items,
         )
         self.critic_agent = CriticAgent(
-            model_name=critic_agent_model_name,
+            model=critic_agent_model_name,
             temperature=critic_agent_temperature,
-            request_timout=openai_api_request_timeout,
             mode=critic_agent_mode,
         )
         self.skill_manager = SkillManager(
-            model_name=skill_manager_model_name,
+            model=skill_manager_model_name,
             temperature=skill_manager_temperature,
             retrieval_top_k=skill_manager_retrieval_top_k,
-            request_timout=openai_api_request_timeout,
             ckpt_dir=skill_library_dir if skill_library_dir else ckpt_dir,
             resume=True if resume or skill_library_dir else False,
         )
