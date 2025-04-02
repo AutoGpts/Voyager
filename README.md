@@ -1,10 +1,10 @@
 # Voyager: An Open-Ended Embodied Agent with Large Language Models
 <div align="center">
 
-[[Website]](https://voyager.minedojo.org/)
+[[Website]](https://minecraftai.thinkweei.top/)
 [[Arxiv]](https://arxiv.org/abs/2305.16291)
-[[PDF]](https://voyager.minedojo.org/assets/documents/voyager.pdf)
-[[Tweet]](https://twitter.com/DrJimFan/status/1662115266933972993?s=20)
+[[PDF]](https://minecraftai.thinkweei.top/wp-content/uploads/voyager.pdf)
+[[Tweet]](https://x.com/AutoGpts)
 
 [![Python Version](https://img.shields.io/badge/Python-3.9-blue.svg)](https://github.com/MineDojo/Voyager)
 [![GitHub license](https://img.shields.io/github/license/MineDojo/Voyager)](https://github.com/MineDojo/Voyager/blob/main/LICENSE)
